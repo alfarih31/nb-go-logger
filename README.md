@@ -34,6 +34,14 @@ import "github.com/alfarih31/nb-go-logger"
 
 ## Quick Start & Usage
 
+Logger will read following ENV:
+
+| Key | Description | Value |
+|----|----|----|
+| LOG_LEVEL | Filtering log based on level | String. Values: `debug`, `error`, `info`, `warn` |
+| LOG_FORMAT | Formatting log | String. Values: `console`, `json` |
+| | | |
+
 ## Contributors ##
 
 - Alfarih Faza <alfarihfz@gmail.com>
