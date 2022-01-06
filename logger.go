@@ -24,6 +24,8 @@ type Logger interface {
 	Debugf(f string, opts ...interface{}) Logger
 	Error(m interface{}, opts ...interface{}) Logger
 	Errorf(f string, opts ...interface{}) Logger
+	Fatal(m interface{}, opts ...interface{})
+	Fatalf(f string, opts ...interface{})
 	NewChild(cname string) Logger
 	SetLevel(level string) Logger
 	AddHook(hook logrus.Hook) Logger
@@ -112,6 +114,17 @@ func (l *logger) Errorf(f string, opts ...interface{}) Logger {
 	l.Entry.WithFields(fields).Errorf(f, ms...)
 
 	return l
+}
+
+func (l *logger) Fatalf(f string, opts ...interface{}) {
+	fields, ms := getFields(nil, opts)
+	l.Entry.WithFields(fields).Fatalf(f, ms...)
+}
+
+func (l *logger) Fatal(m interface{}, opts ...interface{}) {
+	fields, ms := getFields(m, opts)
+	l.Entry.WithFields(fields).Fatal(ms...)
+
 }
 
 func (l *logger) NewChild(cname string) Logger {
